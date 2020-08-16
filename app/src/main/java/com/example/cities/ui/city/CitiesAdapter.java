@@ -58,7 +58,6 @@ public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CitiesView
             City city = cityList.get(getAdapterPosition());
             Intent intent = new Intent(context, SingleCityActivity.class);
             intent.putExtra("cityId", city.getId() + "");
-            Log.e("xxx", "cityId " + city.getId());
             context.startActivity(intent);
         }
     }

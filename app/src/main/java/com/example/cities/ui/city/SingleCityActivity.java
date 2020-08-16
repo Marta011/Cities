@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -30,12 +31,12 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.List;
 
 public class SingleCityActivity extends AppCompatActivity {
     TextView textViewName, textViewCountry, textViewProvince, textViewLicensePlate, textViewCityLaw,
             textViewCreationDate, textViewDensity, textViewInhabitantsNumber, textViewLatitude, textViewLongitude,
             textViewPopulation, textViewLocation;
+    EditText editTextPhoneNumber;
     Button btnSendSms;
     ImageView imageView;
     int cityId;
@@ -56,7 +57,6 @@ public class SingleCityActivity extends AppCompatActivity {
     private void getValueFromIntent() {
         Intent myIntent = getIntent();
         cityId = Integer.parseInt(myIntent.getStringExtra("cityId"));
-        Log.e("xxx", "cityId2 " + cityId);
     }
 
     private void setUpRollingPopulationTextView() {
@@ -104,17 +104,17 @@ public class SingleCityActivity extends AppCompatActivity {
         textViewLocation = findViewById(R.id.textView_location);
         btnSendSms = findViewById(R.id.btn_sendElementViaSMS);
         imageView = findViewById(R.id.imageView_image);
+        editTextPhoneNumber = findViewById(R.id.editText_phoneNumber);
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {
             case REQUEST_INTERNET:
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
                     new DownloadImageTask().execute(city.getImageUrl());
-                } else {
+                else
                     Toast.makeText(SingleCityActivity.this, "Permission Danied", Toast.LENGTH_SHORT).show();
-                }
                 break;
             default:
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -170,6 +170,7 @@ public class SingleCityActivity extends AppCompatActivity {
         protected void onPostExecute(Bitmap result) {
             imageView.setImageBitmap(result);
         }
+
     }
 
     private void viewSingleCityActivity() {
@@ -201,6 +202,7 @@ public class SingleCityActivity extends AppCompatActivity {
                 super.onPostExecute(city);
                 fillWidgetsByValues(city);
                 displayImageFromUrl(city);
+                setUpActionForBtnSendDataViaSms(city);
             }
 
             private void fillWidgetsByValues(City city) {
@@ -214,6 +216,29 @@ public class SingleCityActivity extends AppCompatActivity {
                 textViewInhabitantsNumber.setText("Ilość mieszkańców: " + population.getInhabitantsNumber());
                 textViewLatitude.setText("Szerokość: " + location.getLatitude());
                 textViewLongitude.setText("Wysokość: " + location.getLongitude());
+            }
+
+            private void setUpActionForBtnSendDataViaSms(final City city) {
+                btnSendSms.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String smsText = city.getName() + " - " + city.getCountry() + " - " + city.getProvince();
+                        String phoneNumber = editTextPhoneNumber.getText().toString();
+                        if (ContextCompat.checkSelfPermission(SingleCityActivity.this, Manifest.permission.SEND_SMS)
+                                != PackageManager.PERMISSION_GRANTED) {
+                            // Permission is not granted
+                            // Ask for permision
+                            ActivityCompat.requestPermissions(SingleCityActivity.this, new String[]{Manifest.permission.SEND_SMS}, 1);
+                            SmsManager smsManager = SmsManager.getDefault();
+                            smsManager.sendTextMessage(phoneNumber, null, smsText, null, null);
+                            Toast.makeText(SingleCityActivity.this, "Wysłano sms'a", Toast.LENGTH_SHORT).show();
+                        } else {
+                            // Permission has already been granted
+                            SmsManager smsManager = SmsManager.getDefault();
+                            smsManager.sendTextMessage(phoneNumber, null, smsText, null, null);
+                        }
+                    }
+                });
             }
 
             private void displayImageFromUrl(City city) {
