@@ -13,4 +13,6 @@
     <string name="menu_populate_db_location">Dodaj lokalizacje do bazy</string>
     <string name="menu_populate_db_population">Dodaj populacje do bazy</string>
     <string name="menu_populate_db_city">Dodaj miasta do bazy</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="menu_map">Mapa miast</string>
 </resources>

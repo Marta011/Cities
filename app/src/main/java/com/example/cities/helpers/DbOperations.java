@@ -15,8 +15,7 @@ import java.util.List;
 public class DbOperations {
     private static DbOperations singleton;
 
-    private DbOperations() {
-    }
+    private DbOperations() { }
 
     public static DbOperations getInstance() {
         if (singleton == null)

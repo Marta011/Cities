@@ -161,7 +161,6 @@ public class SingleCityActivity extends AppCompatActivity {
     }
 
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-
         @Override
         protected Bitmap doInBackground(String... strings) {
             return downloadImage(strings[0]);

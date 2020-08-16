@@ -1,18 +1,25 @@
 package com.example.cities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.cities.helpers.DbOperations;
+import com.example.cities.ui.city.CityFragment;
+import com.example.cities.ui.googleMaps.MapsActivity;
+import com.example.cities.ui.home.HomeFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,6 +39,36 @@ public class MainActivity extends AppCompatActivity {
         setUpAppBarConfiguration();
         setUpNavigationUI();
         setUpMenuOptionActions();
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch(menuItem.getItemId()) {
+                    case R.id.nav_map:
+                        Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.nav_city:
+                        // Create new fragment and transaction
+                        Fragment newFragment = new CityFragment();
+                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                        // Replace whatever is in the fragment_container view with this fragment,
+                        // and add the transaction to the back stack if needed
+                        transaction.replace(R.id.nav_host_fragment, newFragment);
+                        transaction.addToBackStack(null);
+                        // Commit the transaction
+                        transaction.commit();
+                        break;
+                    default:
+                        Fragment homeFragment = new HomeFragment();
+                        FragmentTransaction transactionHome = getSupportFragmentManager().beginTransaction();
+                        transactionHome.replace(R.id.nav_host_fragment, homeFragment);
+                        transactionHome.addToBackStack(null);
+                        transactionHome.commit();
+                }
+                return false;
+            }
+        });
     }
 
     @Override
