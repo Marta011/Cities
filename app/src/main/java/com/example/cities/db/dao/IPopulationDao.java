@@ -14,6 +14,6 @@ public interface IPopulationDao {
     @Insert
     void insertAllPopulations(List<Population> populations);
 
-    @Query("SELECT * FROM Populations")
-    List<Population> findAllPopulations();
+    @Query("SELECT * FROM Populations WHERE Id=:populationId")
+    Population findPopulationById(int populationId);
 }

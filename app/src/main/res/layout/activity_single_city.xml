@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context=".ui.city.SingleCityActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Białystok"
+                    android:textAlignment="center"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
+                    android:textColor="#ffffff"
+                    android:textSize="25sp"
+                    android:background="@color/colorPrimaryDark"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/colorPrimaryDark"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/colorPrimaryDark"
+                    android:paddingBottom="2dp" >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="KRAJ:"
+                        android:textAlignment="center"
+                        android:background="#ffffff"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="15sp"/>
+
+                    <TextView
+                        android:id="@+id/textView_country"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="KRAee"
+                        android:textStyle="italic"
+                        android:textAlignment="center"
+                        android:background="#ffffff"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="15sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/colorPrimaryDark"
+                    android:paddingBottom="2dp" >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="WOJEWÓDZTWO:"
+                        android:textAlignment="center"
+                        android:background="#ffffff"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="15sp"/>
+
+                    <TextView
+                        android:id="@+id/textView_province"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="zachodznio-pomorskie"
+                        android:textAlignment="center"
+                        android:background="#ffffff"
+                        android:textStyle="italic"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="15sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/colorPrimaryDark"
+                    android:paddingBottom="2dp" >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="TABLICA REJESTRACYJNA:"
+                        android:textAlignment="center"
+                        android:background="#ffffff"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="15sp"/>
+
+                    <TextView
+                        android:id="@+id/textView_licensePlate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="BI"
+                        android:textAlignment="center"
+                        android:background="#ffffff"
+                        android:textStyle="italic"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="15sp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/colorPrimaryDark"
+                    android:paddingBottom="2dp" >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="PRAWA MIEJSKIE:"
+                        android:textAlignment="center"
+                        android:background="#ffffff"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="15sp"/>
+
+                    <TextView
+                        android:id="@+id/textView_cityLaw"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="VII w."
+                        android:textStyle="italic"
+                        android:textAlignment="center"
+                        android:background="#ffffff"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="15sp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/colorPrimaryDark"
+                    android:paddingBottom="2dp" >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="DATA ZAŁOŻENIA:"
+                        android:textAlignment="center"
+                        android:background="#ffffff"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="15sp"/>
+
+                    <TextView
+                        android:id="@+id/textView_creationDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="1234r."
+                        android:textAlignment="center"
+                        android:background="#ffffff"
+                        android:textStyle="italic"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="15sp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardCornerRadius="0dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:padding="16dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView_population"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#ffffff"
+                        android:textSize="15sp"
+                        android:text="Populacja:  (kliknij, aby zobaczyć więcej)"/>
+
+                    <TextView
+                        android:id="@+id/textView_inhabitantsNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Ilość mieszkańców: 1234"
+                        android:layout_marginBottom="2dp"
+                        android:padding="10dp"
+                        android:background="#ffffff"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="15sp"
+                        android:visibility="gone"/>
+
+                    <TextView
+                        android:id="@+id/textView_density"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Gęstość: 1234os/km2"
+                        android:padding="10dp"
+                        android:background="#ffffff"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="15sp"
+                        android:visibility="gone"/>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardCornerRadius="0dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:padding="16dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#ffffff"
+                        android:textSize="15sp"
+                        android:text="Położenie:  (kliknij, aby zobaczyć więcej)"/>
+
+                    <TextView
+                        android:id="@+id/textView_laitude"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Szerokość: 1234.34444"
+                        android:layout_marginBottom="2dp"
+                        android:padding="10dp"
+                        android:background="#ffffff"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="15sp"
+                        android:visibility="gone"/>
+
+                    <TextView
+                        android:id="@+id/textView_longitude"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Wysokość: 876345.238746"
+                        android:padding="10dp"
+                        android:background="#ffffff"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="15sp"
+                        android:visibility="gone"/>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <ImageView
+                android:id="@+id/imageView_image"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:adjustViewBounds="true"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_launcher_background"
+                android:layout_marginTop="20dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorPrimaryDark"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#ffffff"
+                    android:textSize="13sp"
+                    android:text="  Nr tel:" />
+
+                <EditText
+                    android:id="@+id/editText_phoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="887682487"
+                    android:textSize="13sp"
+                    android:textColor="#ffffff"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_sendElementViaSMS"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Wyślij sms'a"
+                android:layout_marginTop="0dp"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="#ffffff"
+                android:textSize="15sp" />
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+

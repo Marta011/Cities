@@ -1,6 +1,8 @@
 package com.example.cities.ui.city;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +17,8 @@ import com.example.cities.db.entity.City;
 import java.util.List;
 
 public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CitiesViewHolder> {
-    private Context context;
-    private List<City> cityList;
+    private static Context context;
+    private static List<City> cityList;
 
     CitiesAdapter(Context context, List<City> cityList) {
         this.context = context;
@@ -41,13 +43,23 @@ public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CitiesView
         return cityList.size();
     }
 
-    static class CitiesViewHolder extends RecyclerView.ViewHolder {
+    static class CitiesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView txtName, txtCountry;
 
         CitiesViewHolder(@NonNull View itemView) {
             super(itemView);
             txtName = itemView.findViewById(R.id.txt_Name);
             txtCountry = itemView.findViewById(R.id.txt_Country);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            City city = cityList.get(getAdapterPosition());
+            Intent intent = new Intent(context, SingleCityActivity.class);
+            intent.putExtra("cityId", city.getId() + "");
+            Log.e("xxx", "cityId " + city.getId());
+            context.startActivity(intent);
         }
     }
 }

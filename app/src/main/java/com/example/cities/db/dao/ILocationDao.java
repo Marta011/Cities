@@ -13,6 +13,6 @@ public interface ILocationDao {
     @Insert
     void insertAllLocations(List<Location> locations);
 
-    @Query("SELECT * FROM Locations")
-    List<Location> findAllLocations();
+    @Query("SELECT * FROM Locations WHERE Id=:locationId")
+    Location findLocationById(int locationId);
 }

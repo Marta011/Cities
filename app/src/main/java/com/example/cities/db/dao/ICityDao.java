@@ -15,4 +15,7 @@ public interface ICityDao {
 
     @Query("SELECT * FROM Cities")
     List<City> findAllCities();
+
+    @Query("SELECT * FROM Cities WHERE Id=:cityId LIMIT 1")
+    City findCityById(int cityId);
 }
