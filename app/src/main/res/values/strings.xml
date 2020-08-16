@@ -9,4 +9,5 @@
 
     <string name="menu_home">Panel główny</string>
     <string name="menu_city">Miasta</string>
+    <string name="menu_populate_db">Uzupełnij bazę danych</string>
 </resources>
