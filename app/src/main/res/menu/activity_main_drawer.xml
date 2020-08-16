@@ -12,9 +12,5 @@
             android:id="@+id/nav_city"
             android:icon="@drawable/ic_menu_city"
             android:title="@string/menu_city" />
-        <item
-            android:id="@+id/nav_animals"
-            android:icon="@drawable/ic_menu_animals"
-            android:title="@string/menu_animals" />
     </group>
 </menu>
