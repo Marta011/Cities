@@ -3,11 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto" >
 
     <item
-        android:id="@+id/menu_populateDb"
+        android:id="@+id/menu_populateDb_Population"
         android:icon="@drawable/ic_menu_db"
         android:orderInCategory="100"
         app:showAsAction="never"
         android:actionLayout="@layout/support_simple_spinner_dropdown_item"
-        android:title="@string/menu_populate_db" />
+        android:title="@string/menu_populate_db_population" />
+
+    <item
+        android:id="@+id/menu_populateDb_Location"
+        android:icon="@drawable/ic_menu_db"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:actionLayout="@layout/support_simple_spinner_dropdown_item"
+        android:title="@string/menu_populate_db_location" />
+
+    <item
+        android:id="@+id/menu_populateDb_City"
+        android:icon="@drawable/ic_menu_db"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:actionLayout="@layout/support_simple_spinner_dropdown_item"
+        android:title="@string/menu_populate_db_city" />
 
 </menu>

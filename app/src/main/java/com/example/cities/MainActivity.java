@@ -65,8 +65,12 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                if(item.getItemId()==R.id.menu_populateDb)
-                    DbOperations.populateDb(getApplicationContext());
+                if(item.getItemId()==R.id.menu_populateDb_Location)
+                    DbOperations.populateDb_locationsTable(getApplicationContext());
+                else if (item.getItemId()==R.id.menu_populateDb_Population)
+                    DbOperations.populateDb_populationsTable(getApplicationContext());
+                else
+                    DbOperations.populateDb_citiesTable(getApplicationContext());
                 return false;
             }
         });

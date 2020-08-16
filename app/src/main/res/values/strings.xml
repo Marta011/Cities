@@ -10,4 +10,7 @@
     <string name="menu_home">Panel główny</string>
     <string name="menu_city">Miasta</string>
     <string name="menu_populate_db">Uzupełnij bazę danych</string>
+    <string name="menu_populate_db_location">Dodaj lokalizacje do bazy</string>
+    <string name="menu_populate_db_population">Dodaj populacje do bazy</string>
+    <string name="menu_populate_db_city">Dodaj miasta do bazy</string>
 </resources>
