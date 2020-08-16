@@ -1,4 +1,4 @@
-package com.example.cities.ui.slideshow;
+package com.example.cities.ui.city;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.cities.R;
 
-public class SlideshowFragment extends Fragment {
+public class CityFragment extends Fragment {
 
-    private SlideshowViewModel slideshowViewModel;
+    private CityViewModel cityViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        slideshowViewModel =
-                ViewModelProviders.of(this).get(SlideshowViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_slideshow, container, false);
-        final TextView textView = root.findViewById(R.id.text_slideshow);
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        cityViewModel =
+                ViewModelProviders.of(this).get(CityViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_city, container, false);
+        final TextView textView = root.findViewById(R.id.text_city);
+        cityViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
