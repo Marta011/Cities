@@ -13,9 +13,15 @@ public interface ICityDao {
     @Insert
     void insertAllCities(List<City> cities);
 
+    @Insert
+    void insertCity(City city);
+
     @Query("SELECT * FROM Cities")
     List<City> findAllCities();
 
     @Query("SELECT * FROM Cities WHERE Id=:cityId LIMIT 1")
     City findCityById(int cityId);
+
+    @Query("SELECT * FROM Cities WHERE Name=:cityName")
+    List<City> findCityByName(String cityName);
 }

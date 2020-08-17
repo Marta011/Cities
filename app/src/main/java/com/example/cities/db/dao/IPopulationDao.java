@@ -14,6 +14,12 @@ public interface IPopulationDao {
     @Insert
     void insertAllPopulations(List<Population> populations);
 
+    @Insert
+    void insertPopulation(Population population);
+
     @Query("SELECT * FROM Populations WHERE Id=:populationId")
     Population findPopulationById(int populationId);
+
+    @Query("SELECT * FROM Populations WHERE Density=:densityStr")
+    List<Population> findAllPopulationsByDensity(String densityStr);
 }
