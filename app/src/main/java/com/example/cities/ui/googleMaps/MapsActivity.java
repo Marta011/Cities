@@ -1,7 +1,11 @@
 package com.example.cities.ui.googleMaps;
 
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.fragment.app.FragmentActivity;
 
@@ -16,7 +20,9 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -40,6 +46,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        setOnMapClick();
     }
 
     void addMarkOnMap(double lat, double lng, String markTitle) {
@@ -48,6 +55,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     void moveCameraOnMap(double lat, double lng) {
         mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(lat, lng)));
+    }
+
+    void setOnMapClick() {
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                Geocoder geoCoder = new Geocoder (getBaseContext(), Locale.getDefault());
+                try {
+                    List<Address> addresses = geoCoder.getFromLocation(latLng.latitude, latLng.longitude, 1);
+                    String address = "";
+                    if (addresses.size() > 0)
+                        for (int i = 0; i <= addresses.get(0).getMaxAddressLineIndex(); i++)
+                            address += addresses.get(0).getAddressLine(i) + "\n";
+                    else
+                        Log.e("addresses.size","< 0");
+                    address += "[" + latLng.latitude + ", " + latLng.longitude + "]";
+                    Toast.makeText(getBaseContext(),address,Toast.LENGTH_SHORT).show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     private void displayCitiesMarkersOnMap() {
