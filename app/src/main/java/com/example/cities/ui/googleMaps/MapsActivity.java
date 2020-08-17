@@ -1,16 +1,22 @@
 package com.example.cities.ui.googleMaps;
 
-import androidx.fragment.app.FragmentActivity;
-
+import android.os.AsyncTask;
 import android.os.Bundle;
 
+import androidx.fragment.app.FragmentActivity;
+
 import com.example.cities.R;
+import com.example.cities.db.database.DatabaseClient;
+import com.example.cities.db.entity.City;
+import com.example.cities.db.entity.Location;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -20,29 +26,62 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        setUpGoogleMap();
+        displayCitiesMarkersOnMap();
+    }
+
+    private void setUpGoogleMap() {
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-
         mMap = googleMap;
+    }
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+    void addMarkOnMap(double lat, double lng, String markTitle) {
+        mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).title(markTitle));
+    }
+
+    void moveCameraOnMap(double lat, double lng) {
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(lat, lng)));
+    }
+
+    private void displayCitiesMarkersOnMap() {
+        class ViewCities extends AsyncTask<Void, Void, List<City>> {
+            List<Location> locations;
+
+            @Override
+            protected List<City> doInBackground(Void... voids) {
+                locations = DatabaseClient
+                        .getInstance(getApplicationContext())
+                        .getAppDatabase()
+                        .locationDao()
+                        .findAllLocations();
+                return DatabaseClient
+                        .getInstance(getApplicationContext())
+                        .getAppDatabase()
+                        .cityDao()
+                        .findAllCities();
+            }
+
+            @Override
+            protected void onPostExecute(List<City> cities) {
+                super.onPostExecute(cities);
+                markCitiesOnMap(cities, locations);
+                moveCameraOnMap(Double.parseDouble(locations.get(0).getLatitude()), Double.parseDouble(locations.get(0).getLongitude()));
+            }
+
+            private void markCitiesOnMap(List<City> cityList, List<Location> locationList) {
+                for (int i = 0; i < cityList.size(); i++)
+                    addMarkOnMap(Double.parseDouble(locationList.get(i).getLatitude()),
+                            Double.parseDouble(locationList.get(i).getLongitude()),
+                            cityList.get(i).getName());
+            }
+        }
+        new ViewCities().execute();
     }
 }

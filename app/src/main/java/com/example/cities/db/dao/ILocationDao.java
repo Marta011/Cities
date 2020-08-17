@@ -15,4 +15,7 @@ public interface ILocationDao {
 
     @Query("SELECT * FROM Locations WHERE Id=:locationId")
     Location findLocationById(int locationId);
+
+    @Query("SELECT * FROM Locations")
+    List<Location> findAllLocations();
 }
